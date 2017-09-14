@@ -149,6 +149,15 @@ class Misc():
         else:
             await self.bot.say('Usage: `.embedsay [message]`')
 
+    @commands.command(pass_context=True, aliases=['bf'])
+    async def brainfuck(ctx, slurp:str):
+        thruput = ctx.message.content
+        preinput = thruput[5:]
+        preinput2 = "\"\"\"\n" + preinput
+        input = preinput2 + "\n\"\"\""
+        code = read(input)
+        output = bfeval(code)
+        await self.bot.say("Input:\n`{}`\nOutput:\n`{}`".format(preinput, output))
 
     @commands.command()
     async def add(self,*args):
